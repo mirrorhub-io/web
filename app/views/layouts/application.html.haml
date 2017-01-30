@@ -13,11 +13,19 @@
       .nav-wrapper.container
         %a#logo-container.brand-logo{:href => "#"} mirrorhub.io
         %ul.right.hide-on-med-and-down
-          %li
-            %a{:href => "#"} Navbar Link
+          - if session['token']
+            %li
+              %a{href: '/logout'} Logout
+          - else
+            %li
+              %a{href: '/login'} Login
         %ul#nav-mobile.side-nav
+          - if session['token']
+            %li
+              %a{href: '/logout'} Logout
+          - else
           %li
-            %a{:href => "#"} Navbar Link
+            %a{href: '/login'} Login
         %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
           %i.material-icons menu
     = yield

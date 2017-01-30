@@ -1,0 +1,14 @@
+.container
+  .row
+    .col.s12
+      %h3 Register
+      .row
+        = form_for :contact do |f|
+          .input-field.col.s12
+            = f.text_field(:name)
+          .input-field.col.s12
+            = f.text_field(:email)
+          .input-field.col.s12
+            = f.password_field(:password)
+          = f.submit(class: 'btn green')
+        %a.btn.right{href: '/login'} Already have an account?
