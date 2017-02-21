@@ -8,12 +8,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
-  %body
-    %nav.orange{:role => "navigation"}
+  %body.grey.lighten-2
+    %nav.teal{:role => "navigation"}
       .nav-wrapper.container
-        %a#logo-container.brand-logo{:href => "#"} mirrorhub.io
+        %a#logo-container.brand-logo{href: '/'} mirrorhub.io
         %ul.right.hide-on-med-and-down
           - if session['token']
+            %li
+              %a{href: '/mirrors'} Mirrors
+            %li
+              %a{href: '/dashboard'} Dashboard
             %li
               %a{href: '/logout'} Logout
           - else
@@ -22,41 +26,29 @@
         %ul#nav-mobile.side-nav
           - if session['token']
             %li
+              %a{href: '/mirrors'} Mirrors
+            %li
+              %a{href: '/dashboard'} Dashboard
+            %li
               %a{href: '/logout'} Logout
           - else
           %li
             %a{href: '/login'} Login
         %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
           %i.material-icons menu
-    = yield
-    %footer.page-footer.orange
+    %main
+      = yield
+    %footer.page-footer.teal
       .container
         .row
           .col.l6.s12
-            %h5.white-text Company Bio
+            %h5.white-text Our Mission
             %p.grey-text.text-lighten-4 We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.
-          .col.l3.s12
-            %h5.white-text Settings
-            %ul
-              %li
-                %a.white-text{:href => "#!"} Link 1
-              %li
-                %a.white-text{:href => "#!"} Link 2
-              %li
-                %a.white-text{:href => "#!"} Link 3
-              %li
-                %a.white-text{:href => "#!"} Link 4
-          .col.l3.s12
+          .col.l3.s12.offset-l3
             %h5.white-text Connect
             %ul
               %li
-                %a.white-text{:href => "#!"} Link 1
-              %li
-                %a.white-text{:href => "#!"} Link 2
-              %li
-                %a.white-text{:href => "#!"} Link 3
-              %li
-                %a.white-text{:href => "#!"} Link 4
+                %a.white-text{href: 'https://github.com/mirrorhub-io'} Github
       .footer-copyright
         .container
           Made by

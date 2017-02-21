@@ -1,0 +1,71 @@
+.container
+  .row
+    .col.l8.s12
+      .card
+        = form_for :mirror, url: '/mirrors' do |f|
+          .card-content
+            %span.card-title Create a new mirror!
+            .row
+              .input-field.col.l6.s12
+                = f.label(:name, 'Mirror name')
+                = f.text_field(:name, placeholder: 'Mirrorhub Mirror')
+              .input-field.col.l6.s12
+                = f.label(:domain, 'Your FQDN')
+                = f.text_field(:domain, placeholder: 'mirror.example.com')
+            .row
+              .col.l6.s12
+                .grey-text.small Bandwidth
+                = f.radio_button(:bandwidth, '100', class: 'with-gap')
+                = f.label(:bandwidth_100, '100 Mbit/s')
+                = f.radio_button(:bandwidth, '200', class: 'with-gap')
+                = f.label(:bandwidth_200, '200 Mbit/s')
+                = f.radio_button(:bandwidth, '1000', class: 'with-gap', checked: true)
+                = f.label(:bandwidth_1000, '1 Gbit/s')
+                = f.radio_button(:bandwidth, '10000', class: 'with-gap')
+                = f.label(:bandwidth_10000, '10 Gbit/s')
+              .input-field.col.l6.s12
+                = f.label(:traffic, 'Traffic')
+                = f.number_field(:traffic, placeholder: 'Traffic in terabytes')
+            .row
+              .input-field.col.l6.s12
+                = f.select(:service_id,
+                           [['Choose a service', 0], ['LineageOS', 1], ['ArchLinux', 2]],
+                           disabled: 0,
+                           selected: 0)
+                = f.label(:service_id, 'Service to mirror')
+              .input-field.col.l6.s12
+                = f.select(:endpoint_id,
+                           [['Choose a source', 0], ['Mirrorhub #1', 1], ['LineageOS @ Flipez', 2]],
+                           disabled: 0,
+                           selected: 0)
+                = f.label(:service_id, 'Source to sync from')
+              .input-field.col.l12.s12
+                = f.label(:local_destination, 'Where shall we store the data?')
+                = f.text_field(:local_destination, placeholder: '/srv/mirror/<service_name>')
+            = f.submit(class: 'btn amber darken-3 right')
+    .col.l4.s12
+      .card.amber.lighten-3
+        .card-content
+          %span.card-title Info
+          %ul
+            %li
+              %b Mirror Name
+              %p The name your mirror will be listed at mirrorhub.
+            %li
+              %b Your FQDN
+              %p The domain your mirror is reachable at.
+            %li
+              %b Bandwidth
+              %p How fast is your server? This will influence the weight.
+            %li
+              %b Traffic
+              %p Amount of traffic you want to provide.
+            %li
+              %b Service to mirror
+              %p Which project you want to support?
+            %li
+              %b Source to sync from
+              %p Any nearby servers in your datacenter? Choose them to save traffic!
+            %li
+              %b Where shall we store the data?
+              %p Think of a directory which can handle the project size.

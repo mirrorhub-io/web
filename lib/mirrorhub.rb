@@ -3,9 +3,11 @@ class Mirrorhub
   class API
     class Client
       attr_reader :location
-      attr_accessor :token
-      def initialize(location)
+      attr_accessor :token, :headers
+      def initialize(location, token: nil)
         @location = location
+        @token = token
+        @headers = {'Grpc-Metadata-ContactToken': token}
       end
 
       def auth
@@ -16,7 +18,7 @@ class Mirrorhub
         true if @token = res['token']
       end
 
-      def get(resource, params: {}, headers: {})
+      def get(resource, params: {})
         request = Typhoeus::Request.new(
           "#{@location}/#{resource}",
           method: :get,
@@ -27,15 +29,15 @@ class Mirrorhub
         JSON.parse(res.response_body)
       end
 
-      def post(resource, params: {}, headers: {}, body: {})
+      def post(resource, body: {})
         request = Typhoeus::Request.new(
           "#{@location}/#{resource}",
           method: :post,
-          params: params,
           body: body.to_json,
           headers: headers
         )
         res = request.run
+        puts res.inspect
         JSON.parse(res.response_body)
 
       end

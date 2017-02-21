@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   post '/login' => 'contact#signin'
   post '/register' => 'contact#signup'
+
+  get '/dashboard' => 'dashboard#index'
+
+  resources :mirrors 
+  
 end

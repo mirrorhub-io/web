@@ -5,8 +5,10 @@
       .row
         = form_for :contact do |f|
           .input-field.col.s12
+            = f.label(:email, 'Email')
             = f.text_field(:email)
           .input-field.col.s12
+            = f.label(:password, 'Password')
             = f.password_field(:password)
           = f.submit(class: 'btn green')
         %a.btn.right{href: '/register'} Do not have an account?

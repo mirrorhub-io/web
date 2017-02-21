@@ -1,14 +1,54 @@
 .container
+  .row{style: 'padding-top: 40px'}
+    .col.l4.s12
+      .center
+        %i.material-icons.amber-text.text-darken-2.large
+          http
+        %h3 Fast and reliable!
+        %p
+          Since mirrorhub provides loadbalancing for http and https based mirrors
+          and uses common and established software it's blazingly fast and stable.
+    .col.l4.s12
+      .center
+        %i.material-icons.amber-text.text-darken-2.large
+          money_off
+        %h3 It's free!
+        %p
+          Mirrorhub is free.
+          No matter if you need a mirror or want to provide one.
+          There is no fee for using our infrastructure.
+    .col.l4.s12
+      .center
+        %i.material-icons.amber-text.text-darken-2.large
+          people
+        %h3 Haz peoples!
+        %p
+          Mirrorhub is made for everyone.
+          Come and join our ever growing community and help us to provide
+          every project a mirror it deserves.
+  %hr
   .row
-    .col.s12
-      .card
-        .card-tabs
-          %ul.tabs.tabs-fixed-width.orange.darken-4
-            %li.tab
-              %a.white-text.active{href: '#provide-mirror'} provide
-            %li.tab
-              %a.white-text{href: '#need-mirror'} need
-        .card-content.orange.lighten-5
-          #provide-mirror provide
-          #need-mirror need
+    .col.l6.s12
+      .card.light-blue.darken-3
+        .card-content.white-text{style: 'min-height: 190px'}
+          %i.left.material-icons.medium.amber-text cloud_upload
+          %span.card-title Provide a mirror
+          %br
+          %p
+            Have tons of traffic left every month and
+            unable to find a cool project to support?
+            Join us and find the right project for your server!
+        .card-action
+          %a{href: '/mirrors/new'} Let's go!
 
+    .col.l6.s12
+      .card.light-blue.darken-3
+        .card-content.white-text{style: 'min-height: 190px'}
+          %i.left.material-icons.medium.amber-text cloud_download
+          %span.card-title Request a mirror
+          %br
+          %p
+            Own a cool project and can't handle all users?
+            Join us and find people who are happy to share their traffic with you!
+        .card-action
+          %a{href: '/mirrors/request'} Let's go!
